@@ -1,0 +1,85 @@
+
+
+/* *(별표)는 전체를 선택 할 때 */
+*{
+    margin: 100;
+    padding: 25;
+}
+
+/* h1~은 걍 찾아갈 수 있음 */
+h2{
+    color: orangered;
+}
+
+a {
+    text-decoration: none;
+    color:black
+}
+
+/* #은 ID를 찾을 때 */
+#header-title{
+    font-size: 50px;
+    color: purple;
+}
+
+header ul {
+    background-color: beige;
+}
+
+
+/* .은 Class를 찾을 때  */
+.link{
+
+    font-size: 24px;
+    color: red;
+}
+.link > a {
+    text-decoration: underline;
+}
+
+/* 시맨틱태그도 찾아갈 수 있음 */
+Header {
+    border : 1px solid blue;
+}
+
+.article-title{
+    font-size:  24px;
+    font-weight: bold;
+}
+
+/* []대괄호로 일괄지정도 가능 */
+[type=text] {
+    border: 1px dotted black;
+}
+/* *(전체)를 활용하면 이런 것도 가능 ; href에 example이 포함된 모든 것 */
+
+[name="email"] {
+    background-color: aquamarine;
+}
+/* 자식 및 후손 선택 */
+#header a
+#header > h1
+[href*"example"]
+
+#container .container-btn:hover {
+    font-size:20px;
+}
+#container .container-btn:hover {
+    cursor: pointer;
+
+}
+#container .container-item {
+    font-size: 20px
+}
+#container .container-item:first-child {
+    font-size: 24px
+}
+#container .container-item:last-child {
+    font-size: 32px
+}
+#container .container-item:before {
+    font-size: 32px
+}
+#container .container-item:after {
+    font-size: 32px
+}

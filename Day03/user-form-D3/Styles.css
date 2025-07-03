@@ -1,0 +1,113 @@
+*{
+    margin: 5px;
+    padding: 1px;
+    box-sizing: border-box;
+}
+
+.class{
+    margin-bottom: 1px;
+}
+
+body{
+    background-color: beige;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#registraion-form{
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+[type=text]{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid gray;
+}
+[type=name]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+}
+[type=email]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+}
+[type=text]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+}
+[type=submit]{
+    background-color: blue;
+    color: white;
+    padding: 2px;
+}
+[type=reset]{
+    background-color: black;
+    color: white;
+    padding: 2px;
+}
+
+form p{
+    padding: 3px;
+}
+
+form > p {
+    border-bottom: 1px solid green;
+}
+
+label {
+    display: inline-block;
+    width: 80px;
+    border : 1px solid black;
+    background-color: blueviolet;
+    color:white;
+}
+
+select{
+    width: 100%;
+    border: 5px solid black;
+    font-size:larger;
+    color:white;
+    background-color: blue;
+}
+
+#container .container-btn:hover {
+    background-color: red;
+    font-size : 18px;
+}
+
+#city:hover{
+    border: 5px solid red;
+}
+
+form > p:first-child{
+    margin-top: 20px;
+}
+
+select option:first-child{
+    font-weight: bold;
+}
+
+.form-group::after{
+    content:"";
+    display: block;
+    height: 1px;
+    background: gray;
+    margin-top: 10px;
+}
+
+h2::after{
+    content: "✨";
+    margin-left: 10px;
+}
+h2::before{
+    content: "✨";
+    margin-left: 10px;
+}
+
+label::after{
+    content: "*" ;
+    color: white ;
+}
