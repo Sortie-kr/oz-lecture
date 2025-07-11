@@ -30,7 +30,7 @@ let Profile = {
   name: "송재영",
   age: 33,
   isFutureBright: 2025 < 2026,
-  hieght: undefined,
+  height: undefined,
   mindAge: 20,
   marriageStatus: "married",
   job: "밸류를 설계하는 인디해커",
