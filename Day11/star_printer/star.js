@@ -1,148 +1,105 @@
-main();
+// 사용자 입력
+// input 검증
 
-function screenLog(message) {
-  const consoleDiv = document.getElementById("console");
-  consoleDiv.textContent += message + "\n";
-}
+const STAR = "*";
+const DASH = "-";
+const PATTERNS = [2, 3, 4, 1, 9, 4, 5];
 
-function validation(count, MAX) {
-  if (isNaN(count) || count <= 0 || count > MAX) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
-function print_star_left(count) {
-  let starts = "";
-
-  for (i = 0; i < count; i++) {
-    starts += "*";
-    screenLog(starts);
-  }
-}
-
-function print_star_right(count) {
-  let starts = "";
-
-  for (i = 1; i <= count; i++) {
-    let blank = "";
-    for (j = count - i; j > 0; j--) {
-      blank += " ";
+const getPromptInput = () => {
+  let input;
+  let isNotValid = true;
+  while (isNotValid) {
+    let inputStr = prompt("출력할 별 갯수를 입력하세요.");
+    input = Number(inputStr);
+    if (isNaN(input)) {
+      isNotValid = true;
+      console.log(
+        `[입력: ${inputStr}] Invalid input! This is not number. Please enter number.`
+      );
+      continue;
     }
-    starts += "*";
-    screenLog(blank + starts);
-  }
-}
-
-function print_star_center(count) {
-  const MAX = count / 2;
-  let starts = "";
-  let starts_r = "";
-
-  for (i = 1; i <= MAX; i++) {
-    let blank = "";
-    for (j = MAX - i; j > 0; j--) {
-      blank += " ";
+    if (input >= 1 && input <= 10) {
+      isNotValid = false;
+    } else {
+      console.log(
+        `[입력: ${inputStr}] Invalid input! Enter a number between 1 and 10.`
+      );
     }
-    starts += "*";
-    if (i != 1) starts_r += "*";
-
-    screenLog(blank + starts + starts_r);
   }
+  return input;
+};
+
+function getSigns(count, sign) {
+  let signs = "";
+  for (let i = 0; i < count; i++) {
+    signs += sign;
+  }
+  return signs;
 }
 
-function print_star_center2(count) {
-  const MAX = count / 2;
-  let starts = "";
-
-  for (i = 1; i <= MAX; i++) {
-    let blank = "";
-    for (j = MAX - i; j > 0; j--) {
-      blank += " ";
-    }
-
-    starts += "*";
-    if (i != 1) starts += "*";
-
-    screenLog(blank + starts);
-  }
+function getStars(count) {
+  return getSigns(count, STAR);
 }
 
-function print_star_left_reverse(count) {
-  for (i = count; i > 0; i--) {
-    let starts = "";
-    for (j = 0; j < i; j++) {
-      starts += "*";
-    }
-    screenLog(starts);
-  }
+function getDashes(count) {
+  return getSigns(count, DASH);
 }
 
-function print_star_right_reverse(count) {
-  let blank = "";
-
-  for (i = count; i > 0; i--) {
-    let starts = "";
-    for (j = 0; j < i; j++) {
-      starts += "*";
-    }
-    screenLog(blank + starts);
-    blank += " ";
-  }
+function printResult(input, stars) {
+  console.log(`[입력: ${input}] ${stars}`);
 }
 
-function print_star_center_reverse(count) {
-  let blank = "";
+// 기본과제
+const printNormalStars = function (input) {
+  const stars = getStars(input);
+  printResult(input, stars);
+};
 
-  for (i = count / 2; i > 0; i--) {
-    let starts = "";
-    let starts_r = "";
-
-    for (j = 0; j < i; j++) {
-      starts += "*";
-      if (j !== i - 1) starts_r += "*";
-    }
-
-    screenLog(blank + starts + starts_r);
-    blank += " ";
+// 역순별출력
+const printReverseStars = function (input) {
+  // 3
+  // ***
+  // **
+  // *
+  console.log("[역순 별찍기]");
+  for (let i = input; i >= 0; i--) {
+    const stars = getStars(i);
+    if (stars === "") break;
+    console.log(stars);
   }
-}
+};
 
-function print_star_box(count) {
-  let starts = "";
-
-  for (i = 0; i < count; i++) {
-    starts += "*";
+// 정사각형 출력
+const printSquare = function (input) {
+  // 3
+  // ***
+  // ***
+  // ***
+  console.log("[정사각형 별찍기]");
+  for (let i = 0; i < input; i++) {
+    const stars = getStars(input);
+    console.log(stars);
+    if (i + 1 !== input) console.log(getDashes(input));
   }
+};
 
-  for (i = 0; i < count; i++) {
-    screenLog(starts + (i + 1));
-  }
-}
+const printPatterns = () => {
+  console.log("[패턴 별찍기]");
+  console.log("저장된 패턴 :", PATTERNS.toString());
+  PATTERNS.map((num) => console.log(`패턴값 ${num}: ${getStars(num)}`));
+};
 
-function main() {
-  const MAX = 100;
-  let input = prompt("별 갯수를 입력하세요.");
-  let count = Number(input);
+const printMultipleStars = (...multipleNums) => {
+  console.log("[여러숫자 별찍기]");
+  multipleNums.map((num) =>
+    console.log(`Stars for count ${num}: ${getStars(num)}`)
+  );
+};
 
-  if (validation(count, MAX) == false) {
-    screenLog(`Invalid count! Please enter a number between 0 and ${MAX}.`);
-    return;
-  }
-
-  count = Math.round(count);
-
-  if (count > MAX) {
-    count = MAX;
-  }
-
-  setTimeout(() => print_star_left(count), 200);
-  setTimeout(() => print_star_right(count), 300);
-  setTimeout(() => print_star_center(count), 400);
-  setTimeout(() => print_star_center_reverse(count), 500);
-  setTimeout(() => print_star_left_reverse(count), 600);
-  setTimeout(() => print_star_right_reverse(count), 700);
-  setTimeout(() => print_star_center2(count), 800);
-  setTimeout(() => print_star_box(count), 1000);
-}
+console.log("Enter the number of stars (1-10):");
+const input = getPromptInput();
+printNormalStars(input);
+printReverseStars(input);
+printSquare(input);
+printPatterns();
+printMultipleStars(4, 3, 2, 4, 4, 5, 3, 3, 3, 5, 3, 4, 2, 7, 5, 4);
