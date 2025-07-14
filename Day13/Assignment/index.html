@@ -41,9 +41,14 @@
       <h1>할 일 목록</h1>
       <div>
         <input type="text" id="taskInput" placeholder="할 일을 입력하세요" />
+        <select id="priority">
+          <option value="low">낮음</option>
+          <option value="high">높음</option>
+        </select>
         <button type="button" id="addButton">추가</button>
         <button id="clearButton">전체 삭제</button>
       </div>
+      <div id="taskCount">현재 할 일: 0개</div>
       <ul id="taskList">
         <!-- 샘플제거 -->
         <!-- <li class="task-item">
