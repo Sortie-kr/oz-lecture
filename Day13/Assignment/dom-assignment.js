@@ -1,4 +1,4 @@
-// 과제:
+// 과제:j
 // HTML 파일에 연결하여 브라우저에서 실행하세요
 
 // DOM 요소 선택
@@ -64,6 +64,7 @@ clearButton.addEventListener("click", clearAllTasks);
 // 입력창에서 Enter 키 이벤트 적용 (event.key === 'Enter')
 taskInput.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
+    e.preventDefault();
     addTask();
   }
 });
