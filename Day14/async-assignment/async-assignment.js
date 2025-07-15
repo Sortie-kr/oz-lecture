@@ -18,18 +18,24 @@ buttonEL.addEventListener("click", () => {
   startTimer(value);
 });
 
-//가보자고의 함수정의
+//가보자고의 함수정의 아무값 안주면 10초부터 시작
 function startTimer(seconds = 10) {
   let timerCount = seconds;
   var message = "타이머 종료";
+
+  //   타이머 시작/ 끝났을 때 출력할 것?
   const timerId = setInterval(() => {
     if (timerCount > 0) {
       displayEL.textContent = `타이머 : ${timerCount}초`;
+      //1초 뒤에 1씩 줄어드는 타이머
       timerCount--;
+      //   버튼 비활성화
       buttonEL.disabled = true;
     } else {
+      //시간 다되면 메세지 출력
       clearInterval(timerId);
       displayEL.textContent = message;
+      //버튼 살리기
       buttonEL.disabled = false;
     }
   }, 1000);
