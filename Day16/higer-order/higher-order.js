@@ -169,21 +169,24 @@ movies = [
 ];
 numbers = [1, 2, 3, 4, 5];
 
-// for
+// forEach ; 배열의 각 항목을 반복하면서 특정작업을 수행하는 함수
 let sum = 0;
 numbers.forEach((num) => {
   sum += num;
 });
 
-// reduce
+//reduce()배열을 하나의 값으로 줄이는데 사용되는 고급 메서드
+// array.reduce((누적값,현재값) => {...}, 초기값)
 const sumReduce = numbers.reduce((acc, num) => {
-  return acc + num;
+  return acc + num; // 누적값에 현재값은 더해서 리터ㄴ해라
 }, 0);
 const sumReduceShort = numbers.reduce((acc, num) => acc + num, 0);
+//numers.reduce(acc,num)에 대해 => acc + num으로 반환하고, 초기값은 0으로 지정
 
 // 최대값, 최솟값 탐색
 // 최솟값
 const min = numbers.reduce((acc, num) => (acc > num ? num : acc), 100);
+// (acc < num ? num : acc) 현재값이 더 크냐? 그러면 num유지, 아니면 acc 유지
 const max = numbers.reduce((acc, num) => (acc < num ? num : acc), 0);
 console.log("max:", max);
 
@@ -191,7 +194,7 @@ console.log("max:", max);
 // 함수 조합
 numbers = [1, 2, 3, 4, 5];
 const result = numbers
-  .filter((num) => num % 2 === 0)
+  .filter((num) => num % 2 === 0) // 2로 나눴을때 나머지가 0인것만 찾아
   .map((num) => num * 2)
   .reduce((acc, num) => acc + num, 0);
 

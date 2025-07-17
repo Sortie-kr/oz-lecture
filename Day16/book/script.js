@@ -44,9 +44,11 @@ function removeBook(button) {
   const title = text.split(" - ")[0]; // 제목: "책1"
 
   // TODO : books 배열에서 도서 제거 (findIndex, splice 사용)
-
+  const bookIndex = books.findIndex((b) => b.title === title);
+  if (bookIndex !== -1) books.splice(bookIndex, 1);
   // TODO(도전과제) : rentals 배열에서 대여 상태 제거 (findIndex, splice 사용)
-
+  const rentalIndex = rentals.findIndex((r) => r.getStatus().title === title);
+  if (rentalIndex !== -1) rentals.splice(rentalIndex, 1);
   // DOM에서 li 제거
   li.remove();
 }
@@ -54,13 +56,16 @@ function removeBook(button) {
 // 도서 데이터 처리
 function processBooks() {
   // TODO : map 제목에 "Book: " 접두사 추가
-  const prefixedBooks = books.map(() => {});
+  const prefixedBooks = books.map((book) => ({
+    ...book,
+    title: "book : " + book.title,
+  }));
 
   // TODO : filter 10000원 이상 도서
-  const highPriceBooks = books.filter(() => {});
+  const highPriceBooks = books.filter((book) => book.price >= 10000);
 
   // TODO : reduce 총 가격 계산
-  const totalPrice = books.reduce(() => {}, 0);
+  const totalPrice = books.reduce((sum, book) => sum + book.price, 0);
 
   // 결과 표시
   const resultsDiv = document.getElementById("results");
@@ -120,12 +125,16 @@ function toggleRental(button) {
   const title = text.split(" - ")[0];
 
   // TODO(도전과제) : rentals에서 title과 동일한 요소 찾기
-  const rental = rentals.find(() => {});
+  const rental = rentals.find((r) => {
+    r.getStatus().title === title;
+  });
   if (!rental) return;
 
   const status = rental.getStatus();
   // TODO(도전과제) : books에서 title과 동일한 요소 찾기
-  const book = books.find(() => {});
+  const book = books.find((b) => {
+    b.title === title;
+  });
   if (status.isBorrowed) {
     rental.returnBook();
     li.querySelector(
